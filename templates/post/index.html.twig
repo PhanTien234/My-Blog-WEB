@@ -1,18 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Home Page{% endblock %}
 
 {% block body %}
-<h1>My Post</h1>
-    <section class="post">
+    <style>
+        .posts{
+            border-radius: 10px;
+            box-shadow: 0 40px 16px rgba(0, 0, 0, .25);
+            margin-bottom: 40px;
+            padding: 40px;
+        }
+        img{
+            border-radius: 10px;
+        }
+    </style>
+    <section class="posts">
         <article>
+            <h2>Title</h2>
             <div class="metadata">
                 2022/6/19 at 16:00  by nguyen
                 <span class="badge bg-success">Sports</span>
                 5 comments
             </div>
             <div class="content">
-                <img src="https://picsum.photos/200/300" alt="">
+                <img src="https://picsum.photos/300/200" alt="" class="mt-3 mb-3">
                 <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aspernatur consequuntur culpa cum, dignissimos doloribus, esse facilis hic ipsa magni molestiae necessitatibus provident, quam. Ad earum harum iure molestiae provident.</p>
                 <a href="#">Read More</a>
             </div>
