@@ -19,9 +19,8 @@ class PostController extends AbstractController
     }
     /**
      * @Route("/post/10", name="post_show")
-     * @return Response
      */
-    public function show(): Response
+    public function show()
     {
         return $this->render('post/show.html.twig');
     }
