@@ -7,7 +7,6 @@ use App\Entity\Post;
 use App\Form\CommentType;
 use App\Form\PostType;
 use App\Repository\PostRepository;
-
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
