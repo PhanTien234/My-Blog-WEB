@@ -23,7 +23,7 @@ class Category
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Post::class", mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Post::class, mappedBy="category")
      */
     private $posts;
 

@@ -28,7 +28,7 @@ class Post
 
     private$content;
     /**
-     *@ORM\ManyToOne(targetEntity="Category::class", inversedBy="posts")
+     *@ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
      */
 
     private$category;
