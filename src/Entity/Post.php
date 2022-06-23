@@ -28,6 +28,13 @@ class Post
 
     private$content;
     /**
+     *@ORM\ManyToOne(targetEntity="Category::class", inversedBy="posts")
+     */
+
+    private$category;
+
+
+    /**
      *@ORM\Column(type="datetime")
      */
     private$createdAt;
@@ -82,5 +89,21 @@ class Post
     public function setCreateAt($createAt): void
     {
         $this->createAt=$createAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
     }
 }
