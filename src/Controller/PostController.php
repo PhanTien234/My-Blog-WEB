@@ -105,4 +105,21 @@ class PostController extends AbstractController
         ]);
     }
 
+    // Add comment
+    private function addComment($commentForm, $comment, $post)
+    {
+        if($commentForm->isSubmitted() && $commentForm->isValid()){
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setPost($post);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+            $this->addFlash(
+                'success',
+                'Your comment was added'
+            );
+            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+        }
+    }
+
 }
