@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Repository\PostRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,11 +23,15 @@ class PostController extends AbstractController
         ]);
     }
     /**
-     * @Route("/post/10", name="post_show")
+     * @Route("/post/{id}", name="post_show")
      */
-    public function show()
+    public function show(Request $request,PostRepository $postRepository)
     {
-        return $this->render('post/show.html.twig');
+        $postId = $request->attributes->get('id');
+        $post = $postRepository->find($postId);
+        return $this->render('post/show.html.twig' ,[
+            'post'=> $post
+            ]);
     }
 
 }
