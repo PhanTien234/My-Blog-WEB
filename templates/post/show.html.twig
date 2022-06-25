@@ -1,4 +1,6 @@
 {% extends 'base.html.twig' %}
+{% form_theme commentForm 'bootstrap_4_layout.html.twig' %}
+
 {% block title %}Post Show{% endblock %}
 
 {% block body %}
@@ -14,6 +16,7 @@
             border-radius: 10px;
         }
     </style>
+
     {% for message in app.flashes('success') %}
         <div class="alert alert-success mt-5 text-center">
             {{ message }}
@@ -62,5 +65,9 @@
         {{ form_widget(commentForm) }}
         <button class="btn btn-success mt-5">Add a comment</button>
         {{ form_end(commentForm) }}
+
     {% endif %}
+
 {% endblock %}
+
+

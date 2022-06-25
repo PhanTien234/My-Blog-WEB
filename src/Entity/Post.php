@@ -20,29 +20,27 @@ class Post
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private$id;
+    private $id;
 
     /**
-     *@ORM\Column(type="string",length=255)
+     * @ORM\Column(type="string", length=255)
      */
-
-    private$title;
-    /**
-     *@ORM\Column(type="text")
-     */
-
-    private$content;
-    /**
-     *@ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
-     */
-
-    private$category;
-
+    private $title;
 
     /**
-     *@ORM\Column(type="datetime")
+     * @ORM\Column(type="text")
      */
-    private$createdAt;
+    private $content;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="posts")
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="post")
@@ -72,38 +70,44 @@ class Post
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posts")
+     */
+    private $author;
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
     }
 
-    public function getId():?int
+    public function getId(): ?int
     {
-        return$this->id;
+        return $this->id;
     }
 
     /**
-     *@return mixed
+     * @return mixed
      */
     public function getTitle()
     {
-        return$this->title;
+        return $this->title;
     }
 
     /**
-     *@param mixed$title
+     * @param mixed $title
      */
-    public function setTitle($title):void
+    public function setTitle($title): void
     {
-        $this->title=$title;
+        $this->title = $title;
     }
 
     /**
-    *@return mixed
-    **/
+     * @return mixed
+     */
     public function getContent()
     {
-        return$this->content;
+        return $this->content;
     }
 
     /**
@@ -111,22 +115,23 @@ class Post
      */
     public function setContent($content): void
     {
-        $this->content =$content;
+        $this->content = $content;
     }
 
     /**
      * @return mixed
      */
     public function getCreatedAt()
-    {return $this->createdAt;
+    {
+        return $this->createdAt;
     }
 
     /**
-     * @param mixed $createAt
+     * @param mixed $createdAt
      */
-    public function setCreateAt($createAt): void
+    public function setCreatedAt($createdAt): void
     {
-        $this->createAt=$createAt;
+        $this->createdAt = $createdAt;
     }
 
     /**
@@ -146,7 +151,7 @@ class Post
     }
 
     /**
-     * @return Collection<int, Comment>
+     * @return Collection|Comment[]
      */
     public function getComments(): Collection
     {
@@ -209,5 +214,18 @@ class Post
     {
         return $this->imageName;
     }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
 
 }
