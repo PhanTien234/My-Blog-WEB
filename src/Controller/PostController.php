@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Comment;
 use App\Entity\Post;
 use App\Form\CommentType;
@@ -79,7 +80,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/post/{id}/edit", name="post_edit")
+     * @Route("/post/edit/{id}", name="post_edit")
      */
     public function edit(Post $post, Request $request)
     {
@@ -104,9 +105,25 @@ class PostController extends AbstractController
             'editForm' => $form->createView()
         ]);
     }
+    /**
+     * @Route("/post/delete/{id}", name="post_delete")
+     * @noinspection PhpUndefinedConstantInspection
+     */
+    public function deleteAction($id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $post = $entityManager->getRepository( Post::class)->find($id);
+        $entityManager->remove($post);
+        $entityManager->flush();
 
-    // Add comment
-    private function addComment($commentForm, $comment, $post)
+        $this->addFlash(
+            'success',
+            'Post deleted'
+        );
+
+        return $this->redirectToRoute('post');
+    }
+    private function addComment($commentForm, $comment, $post): void
     {
         if($commentForm->isSubmitted() && $commentForm->isValid()){
             $comment->setCreatedAt(new \DateTimeImmutable());
@@ -118,8 +135,9 @@ class PostController extends AbstractController
                 'success',
                 'Your comment was added'
             );
-            return $this->redirectToRoute('post_show', ['id' => $post->getId()]);
+            $this->redirectToRoute('post_show', ['id' => $post->getId()]);
         }
     }
+
 
 }

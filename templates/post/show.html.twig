@@ -40,6 +40,7 @@
                 <p>{{ post.content }}</p>
                 {% if app.user == post.author %}
                     <a href="{{ path('post_edit', {'id': post.id}) }}">Edit the post</a>
+                    <a href="{{ path('post_delete', {'id': post.id}) }}">Delete the post</a>
                 {% endif %}
             </div>
         </article>

@@ -55,7 +55,8 @@ class Category
     {
         return $this->posts;
     }
-    public function addPost(Post $post){
+    public function addPost(Post $post): Category
+    {
         if(!$this->posts->contains($post)){
             $this->posts[] = $post;
             $post->setCategory($this);
@@ -63,7 +64,8 @@ class Category
         return $this;
     }
 
-    public function removePost(Post $post){
+    public function removePost(Post $post): Category
+    {
         if(!$this->posts->contains($post)){
             $this->posts->removeElement($post);
             if($post->getCategory() === $this){
