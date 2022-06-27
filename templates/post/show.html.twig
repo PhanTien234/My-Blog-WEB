@@ -5,14 +5,20 @@
 
 {% block body %}
     <style>
-        .post{
+        .post {
             border-radius: 10px;
             box-shadow: 0 10px 16px rgba(0, 0, 0, .25);
             margin-bottom: 40px;
             margin-top: 40px;
             padding: 40px;
         }
-        img{
+
+        a {
+            text-decoration: none;
+            color: #f9fafb;
+        }
+
+        img {
             border-radius: 10px;
         }
     </style>
@@ -27,30 +33,38 @@
         <article>
             <h2>{{ post.title }}</h2>
             <div class="metadat">
-                {{ post.createdAt | date('Y-m-d')}} at {{ post.createdAt | date('H:i') }} by John
+                {{ post.createdAt | date('Y-m-d') }} at {{ post.createdAt | date('H:i') }} by John
                 <span class="badge bg-success">{{ post.category.title }}</span>
-                {{ post.comments | length  }} {{ (post.comments | length <= 1) ? 'comment' : 'comments' }}
+                {{ post.comments | length }} {{ (post.comments | length <= 1) ? 'comment' : 'comments' }}
             </div>
             <div class="content">
                 {% if post.imageName %}
-                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}" width="300" height="200" alt="" class="mt-3 mb-3">
+                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}" width="300" height="200" alt=""
+                         class="mt-3 mb-3">
                 {% else %}
                     <img src="https://picsum.photos/seed/picsum/300/200" alt="" class="mt-3 mb-3">
                 {% endif %}
                 <p>{{ post.content }}</p>
                 {% if app.user == post.author %}
-                    <a href="{{ path('post_edit', {'id': post.id}) }}">Edit the post</a>
-                    <a href="{{ path('post_delete', {'id': post.id}) }}">Delete the post</a>
+
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        <a href="{{ path('post_edit', {'id': post.id}) }}">Edit the post</a>
+                    </button>
+                    <button class="btn btn-lg btn-primary" type="submit">
+                        <a href="{{ path('post_delete', {'id': post.id}) }}">Delete the post</a>
+                    </button>
+
                 {% endif %}
             </div>
         </article>
     </section>
 
-    <h2 class="mt-5">{{ post.comments | length  }} {{ (post.comments | length <= 1) ? 'comment' : 'comments' }}</h2>
+    <h2 class="mt-5">{{ post.comments | length }} {{ (post.comments | length <= 1) ? 'comment' : 'comments' }}</h2>
     <section class="mt-5">
         {% for comment in post.comments %}
             <div class="card-header">
-                {{ comment.author}} <small> {{ comment.createdAt | date('Y-m-d')}} at {{ comment.createdAt | date('H:i') }}</small>
+                {{ comment.author }} <small> {{ comment.createdAt | date('Y-m-d') }}
+                    at {{ comment.createdAt | date('H:i') }}</small>
             </div>
             <div class="card-body">
                 <p>{{ comment.content }}</p>
@@ -70,5 +84,3 @@
     {% endif %}
 
 {% endblock %}
-
-
