@@ -64,7 +64,7 @@ class PostController extends AbstractController
     /**
      * @Route("/post/{id}", name="post_show")
      */
-    public function show(Request $request, PostRepository $postRepository)
+    public function show(Request $request, PostRepository $postRepository): Response
     {
         $postId = $request->attributes->get('id');
         $post = $postRepository->find($postId);
