@@ -1,20 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Profile User{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/DELL/My-Blog-WEB/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/DELL/My-Blog-WEB/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <section class="vh-100" style="background-color: #f4f5f7;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-lg-6 mb-4 mb-lg-0">
+                    <div class="card mb-3" style="border-radius: .5rem;">
+                        <div class="row g-0">
+                            <div class="col-md-4 gradient-custom text-center text-white"
+                                 style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                                <img src="https://www.facebook.com/messenger_media/?thread_id=5366981346701477&attachment_id=365665172332220&message_id=mid.%24gABMRPbivsKWHu7hGgmBinL1CYDje"
+                                     alt="Avatar" class="img-fluid my-5" style="width: 80px;"/>
+                                <h5>{{ app.user.lastName }} {{ app.user.firstname }}</h5>
+                                <p>Writer</p>
+                                <i class="far fa-edit mb-5"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body p-4">
+                                    <h6>Information</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Email</h6>
+                                            <p class="text-muted">{{ app.user.email }}</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Phone</h6>
+                                            <p class="text-muted">{{ app.user.phoneNumber }}</p>
+                                        </div>
+                                    </div>
+                                    <h6>Projects</h6>
+                                    <hr class="mt-0 mb-4">
+                                    <div class="row pt-1">
+                                        <div class="col-6 mb-3">
+                                            <h6>Recent</h6>
+                                            <p class="text-muted">Lorem ipsum</p>
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <h6>Most Viewed</h6>
+                                            <p class="text-muted">Dolor sit amet</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-start">
+                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
+                                        <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
+                                        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
