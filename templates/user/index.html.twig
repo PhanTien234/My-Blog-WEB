@@ -3,6 +3,19 @@
 {% block title %}Profile User{% endblock %}
 
 {% block body %}
+    <style>
+        .gradient-custom {
+            /* fallback for old browsers */
+            background: #f6d365;
+
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+        }
+
+    </style>
     <section class="vh-100" style="background-color: #f4f5f7;">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -11,7 +24,7 @@
                         <div class="row g-0">
                             <div class="col-md-4 gradient-custom text-center text-white"
                                  style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-                                <img src="https://th.bing.com/th/id/OIP.I2IldwCLbGKuHsOmfd0aWAHaJ0?w=154&h=205&c=7&r=0&o=5&dpr=1.25&pid=1.7 "
+                                <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}"
                                      alt="Avatar" class="img-fluid my-5" style="width: 80px;"/>
                                 <h5>{{ app.user.lastName }} {{ app.user.firstname }}</h5>
                                 <p>Writer</p>
@@ -22,31 +35,31 @@
                                     <h6>Information</h6>
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
-                                        <div class="col-6 mb-3">
+                                        <div class="col-8 mb-3">
                                             <h6>Email</h6>
                                             <p class="text-muted">{{ app.user.email }}</p>
                                         </div>
-                                        <div class="col-6 mb-3">
+                                        <div class="col-4 mb-3">
                                             <h6>Phone</h6>
                                             <p class="text-muted">{{ app.user.phoneNumber }}</p>
                                         </div>
                                     </div>
-                                    <h6>Projects</h6>
+                                    <div class="d-flex justify-content-start">
+                                        <a href="{{ app.user.facebook }}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                                            </svg></a>
+                                    </div>
                                     <hr class="mt-0 mb-4">
                                     <div class="row pt-1">
-                                        <div class="col-6 mb-3">
-                                            <h6>Recent</h6>
-                                            <p class="text-muted">Lorem ipsum</p>
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <h6>Most Viewed</h6>
-                                            <p class="text-muted">Dolor sit amet</p>
+                                        <div class="col-12 mb-12">
+                                            <h6>address</h6>
+                                            <p class="text-muted">{{ app.user.address }}</p>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-start">
-                                        <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                                        <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                                        <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                                    <div>
+                                            <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark>
+                                                <a href="{{ 'app_user_edit' }}">Edit profile</a>
+                                            </button>
                                     </div>
                                 </div>
                             </div>
